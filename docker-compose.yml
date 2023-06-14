@@ -39,7 +39,7 @@ services:
       - QDB_SHARED_WORKER_COUNT=2 
       - QDB_TELEMETRY_ENABLED=false 
 
-  grafana: 
+  grafana_QUESTDB: 
     image: grafana/grafana-enterprise
     container_name: grafana
     restart: unless-stopped
