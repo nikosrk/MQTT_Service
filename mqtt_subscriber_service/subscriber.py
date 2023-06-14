@@ -1,5 +1,7 @@
 import paho.mqtt.client as mqtt
 from questdb.ingress import Sender, IngressError, TimestampNanos
+import sys
+
 
 from datetime import datetime
 import json
