@@ -1,0 +1,54 @@
+version:  '3.7'
+services:
+  mqtt_broker:
+    image:  eclipse-mosquitto:2.0.15  # specifying the version of mosquitto
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+      - ./mosquitto/config:/mosquitto/config
+    restart: always
+
+  weather_publisher:
+    build:  ./mqtt_publisher_service
+    depends_on:
+      - mqtt_broker
+    restart:  always
+
+  weather_subscriber:
+    build:  ./mqtt_subscriber_service
+    depends_on:
+      - mqtt_broker
+      - questdb
+    restart: always
+
+  questdb:
+    image: questdb/questdb
+    restart: always
+    ports:
+      - 9000:9000
+      - 9009:9009
+    volumes:
+      - ./questdb:/root/.questdb
+    environment:
+      - QDB_LOG_W_STDOUT_LEVEL=ERROR
+      - QDB_LOG_W_FILE_LEVEL=ERROR
+      - QDB_LOG_W_HTTP_MIN_LEVEL=ERROR
+      - QDB_SHARED_WORKER_COUNT=2 
+      - QDB_TELEMETRY_ENABLED=false 
+
+  grafana: 
+    image: grafana/grafana-enterprise
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - questdb
+
+volumes:
+  grafana_data: {}
