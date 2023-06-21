@@ -1,0 +1,13 @@
+version:  '3.7'
+
+services:
+  mqtt_publisher:
+    image: mqtt_publisher_1
+    networks:
+      - mqtt_network_1
+    restart: always
+
+networks:
+  mqtt_network_1:
+    external:
+      name: mqtt_services_network

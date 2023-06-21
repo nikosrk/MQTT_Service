@@ -1,0 +1,13 @@
+version:  '3.7'
+
+services:
+  mqtt_subscriber:
+    image: mqtt_subscriber_1
+    networks:
+      - mqtt_network_2
+    restart: always
+
+networks:
+  mqtt_network_2:
+    external:
+      name: mqtt_services_network

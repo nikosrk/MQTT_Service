@@ -1,0 +1,15 @@
+version:  '3.7'
+
+services:
+  api_service:
+    image: api_service
+    ports:
+      - "8000:8000"
+    networks:
+      - api_service_network
+    restart: always
+
+networks:
+  api_service_network:
+    external:
+      name: mqtt_services_network
