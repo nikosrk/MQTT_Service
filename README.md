@@ -22,45 +22,44 @@
 
 - Clone the repo:
 
-    ```bash
-        git clone https://github.com/nikosrk/MQTT_Service.git
-    ```
+```bash
+    git clone https://github.com/nikosrk/MQTT_Service.git
+```
 
 - Start running the services:
 
 > Configure Mosquitto Broker
     
-    ```bash
-        cd MQTT_Service
-        docker-compose up -d 
-    ```
+```bash
+    cd MQTT_Service
+    docker-compose up -d 
+```
 
 > Start Mosquitto Broker, Quest, Grafana service
 
-    ```bash
-        cd MQTT_Service
-        docker create network mqtt_services_network
-        docker-compose up -d 
-    ```
+```bash
+    cd MQTT_Service
+    docker create network mqtt_services_network
+    docker-compose up -d 
+```
 
 > Start Fake Weather Publisher service
 
-    ```bash
-        cd mqtt_publisher_service
-        docker create network mqtt_network_1
-        docker build -t mqtt_publisher_1 .
-        docker-compose up -d
-    ```
+```bash
+    cd mqtt_publisher_service
+    docker create network mqtt_network_1
+    docker build -t mqtt_publisher_1 .
+    docker-compose up -d
+```
 
 > Start Subscriber (Consumer) service
 
-    ```bash
-        cd mqtt_subscriber_service
-        docker create network mqtt_network_2
-        docker build -t mqtt_subscriber_1 .
-        docker-compose up -d
-    ```
-
+```bash
+    cd mqtt_subscriber_service
+    docker create network mqtt_network_2
+    docker build -t mqtt_subscriber_1 .
+    docker-compose up -d
+```
 
 ## MQTT Python Client Producer
 
@@ -85,12 +84,21 @@ Grafana is used as the visualization tool in this project. It connects to QuestD
 To use Grafana:
 - Open Toggle Menu -> Go to Connections -> data sources -> add new data source -> select PostgreSQL -> in Settings: 1) Host: questdb:8812, 2) weather_data, 3) (Default) User: admin, Password: quest, 4)  TLS/SSL Mode: disable -> Save & Test
 - Open Toggle Menu -> Go to Dashboards -> click New -> New Dashboards -> Add Visualization -> Select data source (PostgreSQL) ->
+
 > instead of Builder, select Code and add query: 
-    ```sql 
-        SELECT timestamp AS TIME, temperature FROM weather_data
-    ```
+
+```sql 
+    SELECT timestamp AS TIME, temperature FROM weather_data
+```
+
+<br />
+
 > Run query
+
+<br />
+
 > Select the +Query
-    ```sql 
-            SELECT timestamp AS TIME, humidity FROM weather_data
-    ```
+
+```sql 
+    SELECT timestamp AS TIME, humidity FROM weather_data
+```
