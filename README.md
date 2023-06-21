@@ -2,6 +2,8 @@
 
 [MQTT_Service]
 
+![alt text](mqtt_service.drawio.png)
+
 ## Description
 
 [MQTT_Service] is a Python-based project that simulates a fake producer of temperature and humidity data using MQTT (Message Queuing Telemetry Transport). The project consists of several components, including a MQTT Python client producer, a MQTT broker (Mosquitto), a MQTT Python client consumer, QuestDB, and Grafana. The objective of this project is to generate temperature and humidity data, consume it using the client consumer, and store the data in QuestDB for further analysis and visualization using Grafana. 
