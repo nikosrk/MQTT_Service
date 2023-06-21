@@ -85,12 +85,12 @@ Grafana is used as the visualization tool in this project. It connects to QuestD
 To use Grafana:
 - Open Toggle Menu -> Go to Connections -> data sources -> add new data source -> select PostgreSQL -> in Settings: 1) Host: questdb:8812, 2) weather_data, 3) (Default) User: admin, Password: quest, 4)  TLS/SSL Mode: disable -> Save & Test
 - Open Toggle Menu -> Go to Dashboards -> click New -> New Dashboards -> Add Visualization -> Select data source (PostgreSQL) ->
-    > instead of Builder, select Code and add query: 
-        ```sql 
-            SELECT timestamp AS TIME, temperature FROM weather_data
-        ```
-    > Run query
-    > Select the +Query
-        ```sql 
+> instead of Builder, select Code and add query: 
+    ```sql 
+        SELECT timestamp AS TIME, temperature FROM weather_data
+    ```
+> Run query
+> Select the +Query
+    ```sql 
             SELECT timestamp AS TIME, humidity FROM weather_data
-        ```
+    ```
