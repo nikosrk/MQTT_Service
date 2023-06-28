@@ -32,14 +32,13 @@
     
 ```bash
     cd MQTT_Service
-    docker-compose up -d 
 ```
 
 > Start Mosquitto Broker, Quest, Grafana service
 
 ```bash
     cd MQTT_Service
-    docker create network mqtt_services_network
+    docker network create mqtt_services_network
     docker-compose up -d 
 ```
 
@@ -47,7 +46,7 @@
 
 ```bash
     cd mqtt_publisher_service
-    docker create network mqtt_network_1
+    docker network create mqtt_network_1
     docker build -t mqtt_publisher_1 .
     docker-compose up -d
 ```
@@ -56,7 +55,7 @@
 
 ```bash
     cd mqtt_subscriber_service
-    docker create network mqtt_network_2
+    docker network create mqtt_network_2
     docker build -t mqtt_subscriber_1 .
     docker-compose up -d
 ```
